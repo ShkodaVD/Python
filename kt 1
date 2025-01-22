@@ -6,8 +6,5 @@ while connection:
         break
     else:
         print("Адрес электронной почты недействителен. Повторите попытку.")
-    # if input("Повторить попытку? (yes/no): ").lower() != "yes":
-    #     connection = False
-    #     print("Ознакомтесь с вашей электронной почтой.")
 if not connection:
-  print("Нет соединения")
+    print("Нет соединения")
