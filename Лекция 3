@@ -1,0 +1,250 @@
+"""
+Задание 1.
+Пользователь вводит строку в консоль. Проверить, является ли данная строка палиндромом. Палиндром — это строка, которая читается одинаково слева направо и справа налево.
+"""
+st = list(str(input()))
+if st == st[::-1]:
+  print("палиндром")
+else:
+  print("не палиндром")
+
+
+"""
+Задание 2.
+Извлечь каждую цифру из трехзначного числа. Ввод: 751, вывод: сотни - 7, десятки - 5, единицы - 1
+"""
+number =input("Введите трехзначное число") 
+sotni = number[0] 
+desytki = number[1] 
+ones = number[2] 
+print(f"Сотни {sotni} Десятки {desytki} Единицы {ones}")
+
+
+"""
+Задание 3.
+Даны списки а и b. Нужно вернуть список, который состоит из элементов, общих для этих двух списков.
+"""
+list1=list() 
+list2=[1,2,3,4,5] 
+list3=[1,2,3,6,7] 
+for a in list2: 
+  if a in list3: 
+    list1.append(a) 
+print(list1)
+
+
+"""
+Задание 4.
+На входе имеем список строк разной длины. Необходимо код, которая создаст новый список из строк одинаковой длины. Длину итоговой строки определяем исходя из самой большой из них. 
+Если конкретная строка короче самой длинной, дополнить ее нижними подчеркиваниями с правого края до требуемого количества символов. Расположение элементов начального списка не менять.
+"""
+spisok1 = ['один','двапп','одинннн','дваа','три'] 
+new_list = [] 
+max = 0 
+for i in spisok1: 
+  if len(i) > max: 
+    max = len(i) 
+for i in spisok1: 
+  if len(i) != max: 
+    diference_between_elements = max - len(i) 
+    new_string_after = i + '_' * diference_between_elements 
+    new_list.append(new_string_after) 
+  else: 
+    new_list.append(i) 
+ 
+print(new_list)
+
+
+"""
+Задание 5.
+Вася хочет узнать, какую четвертную оценку по информатике он получит. 
+Учитель придержтвается следующей системы оценки учащихся: вычисляется среднее арифметическое оценок за четверть и итогом становится округленное значение. 
+При этом, если есть двойка, а следующая оценка за ней - не двойка, то двойка в подсчете не учитывается. 
+Вводятся несколько чисел через запятую - оценки Васи. Необходимо вывести итоговую оценку за четверть.
+"""
+def calculate_final_grade(grades):
+    grades = list(map(int, grades.split(',')))
+    i = 0
+    while i < len(grades):
+        if grades[i] == 2 and i + 1 < len(grades) and grades[i + 1] != 2:
+            del grades[i]
+        else:
+            i += 1
+    if len(grades) == 0:
+        return 0
+    average = sum(grades) / len(grades)
+    final_grade = round(average)
+    return final_grade
+input_grades = input("Введите оценки через запятую: ")
+final_grade = calculate_final_grade(input_grades)
+print("Итоговая оценка за четверть:", final_grade)
+
+
+
+"""
+Задание 6.
+Реализуйте программу-викторину, в которой пользователь может отвечать на вопросы по различным темам. 
+Создайте список вопросов и ответов, затем используйте циклы и условные операторы для проверки правильности ответа.
+"""
+def run_quiz(questions):
+    score = 0
+    for question, correct_answer in questions:
+        print(question)
+        user_answer = input("Ваш ответ: ")
+        if user_answer.lower() == correct_answer.lower():
+            print("Правильно!\n")
+            score += 1
+        else:
+            print(f"Неправильно. Правильный ответ: {correct_answer}\n")
+    print(f"Викторина завершена! Ваш результат: {score} из {len(questions)}")
+questions = [
+    ("Кто написал книгу Вероника решает умереть?", "Пауло Коэльо"),
+    ("С какого аниме персонаж Леви Аккерман?", "Атака титанов"),
+    ("Кто написал песню 'Хочу тачку, а мне дарят колготки, не нужны колготки, такой как я красотки'?", "МС Кисуля"),
+    ("Кто постоянно опаздывает на первую пару?", "Куликова"),
+    ("Сколько людей в группе kh-24?", "30")
+]
+run_quiz(questions)
+
+
+
+"""
+Задание 7.
+В настольной игре Скрабл (Scrabble) каждая буква имеет определенную ценность. 
+В случае с английским алфавитом очки распределяются так, как в словаре ниже. 
+Напишите программу, которая вычисляет стоимость введенного пользователем слова. 
+Будем считать, что на вход подается только одно слово, которое содержит либо только английские буквы.
+"""
+def calculate_scrabble_score(word):
+    points = {
+        1: 'AEIOULNSTR',
+        2: 'DG',
+        3: 'BCMP',
+        4: 'FHVWY',
+        5: 'K',
+        8: 'JX',
+        10: 'QZ'
+    }
+    letter_values = {}
+    for score, letters in points.items():
+        for letter in letters:
+            letter_values[letter] = score
+    word = word.upper()
+    score = 0
+    for letter in word:
+        if letter in letter_values:
+            score += letter_values[letter]
+
+    return score
+user_word = input("Введите слово: ")
+result = calculate_scrabble_score(user_word)
+print(f"Стоимость слова '{user_word}' в Scrabble: {result} очков")
+
+
+"""
+Задание 8.
+Напишите программу, которая будет создавать список из двух по следующему примеру: [1, 2, 3] (+) [11, 22, 33] -> [1, 11, 2, 22, 3, 33]
+"""
+def merge_lists(list1, list2):
+    merged_list = []
+    min_length = min(len(list1), len(list2))
+    for i in range(min_length):
+        merged_list.append(list1[i])
+        merged_list.append(list2[i])
+    if len(list1) > min_length:
+        merged_list.extend(list1[min_length:])
+    elif len(list2) > min_length:
+        merged_list.extend(list2[min_length:])
+    return merged_list
+list1 = [5, 43, 67, 100, 20]
+list2 = [10, 52, 90]
+result = merge_lists(list1, list2)
+print(result)
+
+
+"""
+Задание 9.
+Пользвоатель вводит 2 числа - индексы списка. Выведите список, который не содержит элементов по этим индексам.
+Дан список: [1, 44, 7, 9, 3, 2, 1, 44]
+Ввод: 0, 4
+Результат: [44, 7, 9, 2, 1, 44]
+"""
+def remove_elements_by_indices(lst, indices):
+    return [item for idx, item in enumerate(lst) if idx not in indices]
+
+lst = [80, 0, 52, 42, 89, 15, 7, 61]
+
+user_input = input("Введите индексы через запятую: ")
+
+indices = list(map(int, user_input.split(',')))
+result = remove_elements_by_indices(lst, indices)
+
+print("Результат:", result)
+
+
+"""
+Задание 10.
+Пользователь вводит число. Вывести количество нулей в конце числа.
+18534290000 -> 3
+6532036235001 -> 0
+15 -> 0
+"""
+def count_trailing_zeros(number):
+    num_str = str(number)
+    
+    count = 0
+    for char in reversed(num_str):
+        if char == '0':
+            count += 1
+        else:
+            break
+    return count
+user_input = input("Введите число: ")
+number = int(user_input)
+result = count_trailing_zeros(number)
+print(f"Количество нулей в конце числа: {result}")
+
+
+"""
+Задание 11.
+Дан список. Пользователь вводит число. Вывести ближайшее число к введенному из списка
+[17, 4, 7, 10, 11, 12], 9 == 10
+[17, 4, 7, 10, 11, 12], 8 == 7
+"""
+def find_closest_number(lst, target):
+    closest_num = None
+    min_diff = float('inf')
+
+    for num in lst:
+        diff = abs(num - target)
+        if diff < min_diff:
+            closest_num = num
+            min_diff = diff
+
+    return closest_num
+lst = [8, 91, 98, 9, 15, 76, 1]
+
+target = int(input("Введите число: "))
+result = find_closest_number(lst, target)
+print(f"Ближайшее число к {target}: {result}")
+
+
+"""
+Задание 12.
+Пользователем вводится строка, а затем 2 символа - ограничения. Напечатать в консоль строку, которая находтся между ограничений.
+"What is >apple<", ">", "<" == "apple"
+"[an apple]", "[", "]" == "an apple"
+"""
+def extract_substring(text, start_char, end_char):
+    start_index = text.find(start_char)
+    end_index = text.find(end_char, start_index + 1)
+
+    if start_index == -1 or end_index == -1:
+        return "Ограничители не найдены в строке."
+    return text[start_index + 1:end_index]
+
+text = input("Введите строку: ")
+start_char = input("Введите начальный символ-ограничитель: ")
+end_char = input("Введите конечный символ-ограничитель: ")
+result = extract_substring(text, start_char, end_char)
+print("Результат:", result)
