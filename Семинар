@@ -211,22 +211,19 @@ print(f"Количество нулей в конце числа: {result}")
 [17, 4, 7, 10, 11, 12], 9 == 10
 [17, 4, 7, 10, 11, 12], 8 == 7
 """
-def find_closest_number(lst, target):
-    closest_num = None
-    min_diff = float('inf')
+list = [17, 4, 7, 10, 11, 12]
 
-    for num in lst:
-        diff = abs(num - target)
-        if diff < min_diff:
-            closest_num = num
-            min_diff = diff
+num = int(input("Введите число: "))
 
-    return closest_num
-lst = [8, 91, 98, 9, 15, 76, 1]
+diff=max(list)-num
+target=max(list)
 
-target = int(input("Введите число: "))
-result = find_closest_number(lst, target)
-print(f"Ближайшее число к {target}: {result}")
+for i in list:
+    
+    if abs (i-num)<=diff:
+        diff=abs(i-num)
+        target=i
+print("Ближайшее число:", target)
 
 
 """
@@ -235,16 +232,12 @@ print(f"Ближайшее число к {target}: {result}")
 "What is >apple<", ">", "<" == "apple"
 "[an apple]", "[", "]" == "an apple"
 """
-def extract_substring(text, start_char, end_char):
-    start_index = text.find(start_char)
-    end_index = text.find(end_char, start_index + 1)
-
-    if start_index == -1 or end_index == -1:
-        return "Ограничители не найдены в строке."
-    return text[start_index + 1:end_index]
-
-text = input("Введите строку: ")
+string = input("Введите строку: ")
 start_char = input("Введите начальный символ-ограничитель: ")
 end_char = input("Введите конечный символ-ограничитель: ")
-result = extract_substring(text, start_char, end_char)
-print("Результат:", result)
+
+
+start_index = string.index(start_char)  
+end_index = string.index(end_char)
+
+print(string[start_index +1:end_index])
