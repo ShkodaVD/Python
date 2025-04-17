@@ -157,17 +157,14 @@ print("Результат:", result)
 Ввод: 0, 4
 Результат: [44, 7, 9, 2, 1, 44]
 """
-def remove_elements_by_indices(lst, indices):
-    return [item for idx, item in enumerate(lst) if idx not in indices]
+my_list = [1, 44, 7, 9, 3, 2, 1, 44]
 
-lst = [80, 0, 52, 42, 89, 15, 7, 61]
+index1 = int(input("введите первый индекс: "))
+index2 = int(input("Введите второй индекс: "))
 
-user_input = input("Введите индексы через запятую: ")
+result = [my_list[i] for i in range(len(my_list)) if i != index1 and i != index2]
 
-indices = list(map(int, user_input.split(',')))
-result = remove_elements_by_indices(lst, indices)
-
-print("Результат:", result)
+print("получилось:", result)
 
 
 """
@@ -177,20 +174,15 @@ print("Результат:", result)
 6532036235001 -> 0
 15 -> 0
 """
-def count_trailing_zeros(number):
-    num_str = str(number)
-    
-    count = 0
-    for char in reversed(num_str):
-        if char == '0':
-            count += 1
-        else:
-            break
-    return count
-user_input = input("Введите число: ")
-number = int(user_input)
-result = count_trailing_zeros(number)
-print(f"Количество нулей в конце числа: {result}")
+number = input("Введите число: ")
+
+count = 0
+for digit in reversed(number): 
+    if digit == '0':
+        count += 1
+    else:
+        break 
+print("Количество нулей в конце числа:", count)
 
 
 """
