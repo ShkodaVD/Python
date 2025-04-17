@@ -137,21 +137,17 @@ print(f"стоимость слова '{word}' равна {total_score} очко
 Задание 8.
 Напишите программу, которая будет создавать список из двух по следующему примеру: [1, 2, 3] (+) [11, 22, 33] -> [1, 11, 2, 22, 3, 33]
 """
-def merge_lists(list1, list2):
-    merged_list = []
-    min_length = min(len(list1), len(list2))
-    for i in range(min_length):
-        merged_list.append(list1[i])
-        merged_list.append(list2[i])
-    if len(list1) > min_length:
-        merged_list.extend(list1[min_length:])
-    elif len(list2) > min_length:
-        merged_list.extend(list2[min_length:])
-    return merged_list
-list1 = [5, 43, 67, 100, 20]
-list2 = [10, 52, 90]
-result = merge_lists(list1, list2)
-print(result)
+list1 = [1, 2, 3]
+list2 = [11, 22, 33]
+
+result = []
+
+for i in range(len(list1)):
+    result.append(list1[i]) 
+    result.append(list2[i]) 
+
+
+print("Результат:", result)
 
 
 """
